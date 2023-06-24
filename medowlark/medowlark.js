@@ -12,28 +12,23 @@ app.engine(
 app.set("view engine", "handlebars");
 
 app.get("/", (req, res) => {
-  res.type("text/plain");
-  res.send("Meadowlark Travel");
+  res.render("home");
 });
 
 app.get("/about", (req, res) => {
-  res.type("text/plain");
-  res.send("About Meadowlark Travel");
+  res.render("about");
 });
 
 //404
 app.use((req, res) => {
-  res.type("text/plain");
   res.status(404);
-  res.send("404 - Not found bro");
+  res.render("404");
 });
-
-//500
+// custom 500 page
 app.use((err, req, res, next) => {
   console.error(err.message);
-  res.type("text/plain");
   res.status(500);
-  res.send("500 - Server Error");
+  res.render("500");
 });
 
 app.listen(port, () =>
